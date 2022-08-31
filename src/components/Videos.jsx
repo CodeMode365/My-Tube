@@ -12,6 +12,7 @@ const Videos = ({ videos }) => {
           <Box key={ind} >
             {video.id.videoId && <VideoCard video={video} />}
             {video.id.channelId && <ChannelCard channelDetail={video} />}
+           {/* {console.log(video.id)} */}
           </Box>
         )})}
       </Stack>

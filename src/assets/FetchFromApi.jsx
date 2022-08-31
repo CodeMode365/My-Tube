@@ -10,7 +10,7 @@ const options = {
     maxResults: 50,
   },
   headers: {
-    "X-RapidAPI-Key": `KJwZZIJSFimshuivMSVGaiYzkRomp15f2vKjsnK4bKzuUzVLzA`,
+    "X-RapidAPI-Key": `cfbcf34bcbmsh1adae59f7c787a2p1dcec4jsn710439a8e21a`,
     "X-RapidAPI-Host": "youtube-v31.p.rapidapi.com",
   },
 };
@@ -20,7 +20,6 @@ export const FetchFromApi = async (url) => {
     `https://youtube-v31.p.rapidapi.com/search?q=${url}`,
     options
   );
-  // const { data } = await axios.get(`${BASE_URL}/${url}`, options);
 
   return data;
 };
