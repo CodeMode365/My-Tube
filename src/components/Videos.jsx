@@ -11,7 +11,7 @@ const Videos = ({ videos }) => {
           return(
           <Box key={ind} >
             {video.id.videoId && <VideoCard video={video} />}
-            {video.id.channelId && <ChannelCard channelDetail={video.channelDetail} />}
+            {video.id.channelId && <ChannelCard channelDetail={video} />}
           </Box>
         )})}
       </Stack>
