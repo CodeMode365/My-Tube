@@ -2,7 +2,7 @@ import React from "react";
 import { Stack, Box } from "@mui/material";
 import { VideoCard, ChannelCard } from "./";
 
-const Videos = ({ videos }) => {
+const Videos = ({ videos, direction }) => {
   // console.log(videos)
   if(!videos?.length) "Loading";
   return (

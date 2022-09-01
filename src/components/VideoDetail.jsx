@@ -4,32 +4,29 @@ import ReactPlayer from "react-player";
 import { Typography, Box, Stack } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
-import { Videos } from "./";
+import { Videos, Loader } from "./";
 import FetchFromApi from "../assets/FetchFromApi";
 
 const VideoDetail = () => {
-  const [videoDetail, setVideoDetail] = useState(null);
-  const [videos, setVideos] = useState(null);
+  const [videoDetail, setVideoDetail] = useState([]);
+  const [videos, setVideos] = useState([]);
   const { id } = useParams();
 
   useEffect(() => {
     FetchFromApi(`videos?id=${id}`).then(
-      (data) => setVideoDetail(data.items[0]),
-      console.log(data)
+      (data) => setVideoDetail(data.items[0])
     );
 
     FetchFromApi(`search?relatedToVideoId=${id}&type=video`).then(
-      (data) => setVideos(data.items),
-      console.log(data)
+      (data) => setVideos(data.items)
     );
   }, [id]);
 
+  if (!videoDetail?.snippet) return <Loader />;
   const {
     snippet: { title, channelId, channelTitle },
     statistics: { viewCount, likeCount },
   } = videoDetail;
-
-  // if(!videoDetail?.snippet) return <Loader />;
 
   return (
     <Box minHeight="95vh">
@@ -42,7 +39,7 @@ const VideoDetail = () => {
               controls
             />
             <Typography color="#fff" variant="h5" fontWeight="bold" p={2}>
-              {videoDetail.snippet.title}
+              {title}
             </Typography>
             <Stack
               direction="row"
@@ -51,7 +48,7 @@ const VideoDetail = () => {
               py={1}
               px={2}
             >
-              <Link to={`/channel/${videoDetail.snippet.channelId}`}>
+              <Link to={`/channel/${channelId}`}>
                 <Typography
                   variant={{ sm: "subtitle1", md: "h6" }}
                   color="#fff"
@@ -64,11 +61,11 @@ const VideoDetail = () => {
               </Link>
               <Stack direction="row" gap="20px" alignItems="center">
                 <Typography variant="body1" sx={{ opacity: 0.7 }}>
-                  {parseInt(videoDetail.statistics.viewCount).toLocaleString()}{" "}
+                  {parseInt(viewCount).toLocaleString()}{" "}
                   views
                 </Typography>
                 <Typography variant="body1" sx={{ opacity: 0.7 }}>
-                  {parseInt(videoDetail.statistics.likeCount).toLocaleString()}{" "}
+                  {parseInt(likeCount).toLocaleString()}{" "}
                   likes
                 </Typography>
               </Stack>

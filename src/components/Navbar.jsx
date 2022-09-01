@@ -24,6 +24,16 @@ const Navbar = () => {
           title={"Youtube Logo"}
           alt="logo"
         />
+        <h2
+          style={{
+            color: "white",
+            marginLeft: "15px",
+            transform: "scale(1.25)",
+            fontFamily:"cursive"
+          }}
+        >
+          MyTube
+        </h2>
       </Link>
       <Searchbar />
     </Stack>
