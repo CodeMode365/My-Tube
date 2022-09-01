@@ -4,17 +4,23 @@ import { VideoCard, ChannelCard } from "./";
 
 const Videos = ({ videos }) => {
   // console.log(videos)
+  if(!videos?.length) "Loading";
   return (
     <div>
-      <Stack direction="row" flexWrap="wrap" justifyContent="start" gap={2}>
+      <Stack
+        direction={direction || "row"}
+        flexWrap="wrap"
+        justifyContent="start"
+        gap={2}
+      >
         {videos.map((video, ind) => {
-          return(
-          <Box key={ind} >
-            {video.id.videoId && <VideoCard video={video} />}
-            {video.id.channelId && <ChannelCard channelDetail={video} />}
-           {/* {console.log(video.id)} */}
-          </Box>
-        )})}
+          return (
+            <Box key={ind}>
+              {video.id.videoId && <VideoCard video={video} />}
+              {video.id.channelId && <ChannelCard channelDetail={video} />}
+            </Box>
+          );
+        })}
       </Stack>
     </div>
   );
